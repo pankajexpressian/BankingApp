@@ -4,6 +4,12 @@ using RabbitMQ.Client.Events;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Grpc.Core;
+using Myaccountservice;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Transactions;
 
 namespace PdfGenerationService
 {
@@ -42,8 +48,26 @@ namespace PdfGenerationService
 
         private static async Task<AccountStatement> GetAccountStatementAsync(string accountNumber)
         {
-            // Call gRPC method to get account statement
-            return new AccountStatement { AccountNumber = accountNumber, Transactions = new List<string> { "Debit: 100", "Credit: 200" } };
+            var grpcClient = new GrpcClient();
+
+            // Simulate requesting account statement for account number "12345"
+            var accountStatement = await grpcClient.GetAccountStatement("12345");
+
+            Console.WriteLine($"Account Statement for {accountStatement.AccountNumber}:");
+            foreach (var transaction in accountStatement.Transactions)
+            {
+                Console.WriteLine($"From: {transaction.FromAccount}, To: {transaction.ToAccount}, Amount: {transaction.Amount}");
+            }
+
+            Console.WriteLine("PDF generation complete.");
+
+            return new AccountStatement
+            {
+                AccountNumber = accountStatement.AccountNumber,
+                Transactions = accountStatement.Transactions.Select(t =>
+                    $"{t.FromAccount} -> {t.ToAccount}: {t.TransactionType} {t.Amount} on {t.DateTime}").ToList()
+            };
+
         }
     }
 

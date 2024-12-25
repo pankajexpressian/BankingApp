@@ -1,0 +1,30 @@
+syntax = "proto3";  // Specifies the version of Protocol Buffers
+
+package myaccountservice;  // The namespace for your service
+
+//option csharp_namespace ="myaccountservice";
+
+// Define the AccountService with a method
+service AccountService {
+  rpc GetAccountStatement (AccountStatementRequest) returns (AccountStatementResponse);
+}
+
+// Request Message
+message AccountStatementRequest {
+  string account_number = 1;  // Account number as string
+}
+
+// Response Message
+message AccountStatementResponse {
+  string account_number = 1;  // Account number in the response
+  repeated Transaction transactions = 2;  // List of transactions
+}
+
+// Transaction Message
+message Transaction {
+  string from_account = 1;
+  string to_account = 2;
+  string transaction_type = 3;  // "Debit" or "Credit"
+  double amount = 4;
+  string date_time = 5;
+}
