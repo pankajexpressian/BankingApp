@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F59B2D1C-5A22-40E4-B22A-D335989DF753}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQHelper", "RabbitMQHelper\RabbitMQHelper.csproj", "{5CC462F9-AAD4-4B40-AB71-5BC6B684CD27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService", "AccountService\AccountService.csproj", "{CC7DC287-2957-44B7-9F84-39C234C8A1E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfGenerationService", "PdfGenerationService\PdfGenerationService.csproj", "{65D35F2A-848D-4D0D-9A8D-C973C26E5965}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService1", "NotificationService1\NotificationService1.csproj", "{49404FF7-3101-458E-AAE1-8BD410310F4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService2", "NotificationService2\NotificationService2.csproj", "{E8577AED-63CB-46AE-965B-A9FADAAB2D49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CC462F9-AAD4-4B40-AB71-5BC6B684CD27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CC462F9-AAD4-4B40-AB71-5BC6B684CD27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CC462F9-AAD4-4B40-AB71-5BC6B684CD27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CC462F9-AAD4-4B40-AB71-5BC6B684CD27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC7DC287-2957-44B7-9F84-39C234C8A1E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC7DC287-2957-44B7-9F84-39C234C8A1E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC7DC287-2957-44B7-9F84-39C234C8A1E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC7DC287-2957-44B7-9F84-39C234C8A1E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65D35F2A-848D-4D0D-9A8D-C973C26E5965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65D35F2A-848D-4D0D-9A8D-C973C26E5965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65D35F2A-848D-4D0D-9A8D-C973C26E5965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65D35F2A-848D-4D0D-9A8D-C973C26E5965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49404FF7-3101-458E-AAE1-8BD410310F4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49404FF7-3101-458E-AAE1-8BD410310F4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49404FF7-3101-458E-AAE1-8BD410310F4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49404FF7-3101-458E-AAE1-8BD410310F4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8577AED-63CB-46AE-965B-A9FADAAB2D49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8577AED-63CB-46AE-965B-A9FADAAB2D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8577AED-63CB-46AE-965B-A9FADAAB2D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8577AED-63CB-46AE-965B-A9FADAAB2D49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5CC462F9-AAD4-4B40-AB71-5BC6B684CD27} = {F59B2D1C-5A22-40E4-B22A-D335989DF753}
+		{CC7DC287-2957-44B7-9F84-39C234C8A1E7} = {F59B2D1C-5A22-40E4-B22A-D335989DF753}
+		{65D35F2A-848D-4D0D-9A8D-C973C26E5965} = {F59B2D1C-5A22-40E4-B22A-D335989DF753}
+		{49404FF7-3101-458E-AAE1-8BD410310F4A} = {F59B2D1C-5A22-40E4-B22A-D335989DF753}
+		{E8577AED-63CB-46AE-965B-A9FADAAB2D49} = {F59B2D1C-5A22-40E4-B22A-D335989DF753}
+	EndGlobalSection
+EndGlobal
