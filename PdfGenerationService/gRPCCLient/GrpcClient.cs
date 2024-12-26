@@ -1,5 +1,5 @@
 ﻿using Grpc.Net.Client;
-using Myaccountservice; // Namespace generated from your .proto file
+using Myaccountservice;
 using System.Threading.Tasks;
 
 public class GrpcClient
@@ -8,13 +8,6 @@ public class GrpcClient
 
     public GrpcClient()
     {
-        //var channel = GrpcChannel.ForAddress("http://localhost:5001", new GrpcChannelOptions
-        //{
-        //    HttpHandler = new SocketsHttpHandler
-        //    {
-        //        EnableMultipleHttp2Connections = true
-        //    }
-        //});
         var channel = GrpcChannel.ForAddress("https://localhost:5001");
         _client = new AccountService.AccountServiceClient(channel);
     }

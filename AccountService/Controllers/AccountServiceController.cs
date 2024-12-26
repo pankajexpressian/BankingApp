@@ -3,6 +3,8 @@ using RabbitMQHelper;
 using System.Text;
 using System.Text.Json;
 using RabbitMQ.Client;
+using AccountService.DTOs;
+using AccountService.Services;
 
 namespace AccountService.Controllers
 {
@@ -10,15 +12,10 @@ namespace AccountService.Controllers
     [ApiController]
     public class AccountServiceController : ControllerBase
     {
-        private readonly MQHelper _rabbitMqHelper;
-        private readonly IConnection _connection;
-        private readonly IModel _channel;
-
-        public AccountServiceController(MQHelper rabbitMqHelper)
+        private readonly AccounManagementService _accounManagementService;
+        public AccountServiceController(AccounManagementService accounManagementService)
         {
-            _rabbitMqHelper = rabbitMqHelper;
-            _connection = _rabbitMqHelper.CreateConnection();
-            _channel = _connection.CreateModel();
+            _accounManagementService = accounManagementService;
         }
 
         [HttpPost("create")]
@@ -31,34 +28,41 @@ namespace AccountService.Controllers
                 Balance = account.Balance
             };
 
-            // Publish event to RabbitMQ topic exchange
-            var jsonMessage = JsonSerializer.Serialize(accountCreatedEvent);
-            var body = Encoding.UTF8.GetBytes(jsonMessage);
-            _channel.BasicPublish("account_exchange", "event_account_created", null, body);
+            var status = _accounManagementService.CreateAccount(account);
+
+            if (!status)
+            {
+                return BadRequest("Account Creation Failed");
+            }
 
             return Ok("Account Created");
+        }
+
+        [HttpGet("get-statement")]
+        public IActionResult GetAccountStatement(string accountNumber)
+        {
+            var accountStatement = _accounManagementService.GetAccountStatement(accountNumber);
+            if (accountStatement == null)
+            {
+                return BadRequest("Account Statement Not Found");
+            }
+            return Ok(accountStatement);
         }
 
         [HttpPost("pdf-request")]
         public IActionResult RequestPdf([FromBody] PdfRequest pdfRequest)
         {
-            var jsonMessage = JsonSerializer.Serialize(pdfRequest);
-            var body = Encoding.UTF8.GetBytes(jsonMessage);
-            _channel.BasicPublish("pdf_exchange", "", null, body);
+            var status = _accounManagementService.GeneratePDF(pdfRequest);
+            if (!status)
+            {
+                return BadRequest("PDF Generation Request Failed");
+            }
 
             return Ok("PDF Generation Request Placed");
         }
     }
 
-    public class Account
-    {
-        public string AccountNumber { get; set; }
-        public string AccountType { get; set; }
-        public decimal Balance { get; set; }
-    }
+    
 
-    public class PdfRequest
-    {
-        public string AccountNumber { get; set; }
-    }
+    
 }

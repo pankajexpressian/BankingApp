@@ -9,6 +9,8 @@ namespace NotificationService2
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("==============Notification Service 2 started...================");
+
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
@@ -18,7 +20,7 @@ namespace NotificationService2
 
             channel.QueueDeclare("notification2_queue", true, false, false);
             channel.QueueBind("notification2_queue", "account_exchange", "event_account_created");
-            channel.QueueBind("notification2_queue", "pdf_generated_exchange", "");
+            channel.QueueBind("notification2_queue", "pdf_exchange", "event-pdf-generated");
 
             var consumer = new EventingBasicConsumer(channel);
             consumer.Received += (sender, e) =>
